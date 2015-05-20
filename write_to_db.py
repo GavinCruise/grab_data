@@ -13,19 +13,19 @@ def add_pos(pos, types):
         cur = conn.cursor()
 
         if types == "position":
-            add_position = """insert into job_position(candy,detail,education,experience,name,place,salary) values (%s,%s,%s,%s,%s,%s,%s)"""
+            add_position = """insert into job_position(candy,detail,education,experience,name,place,salary,company_id) values (%s,%s,%s,%s,%s,%s,%s,%s)"""
             data_position = (
                 pos.candy.encode('utf-8'), pos.detail.encode('utf-8'), pos.edu.encode('utf-8'),
                 pos.experience.encode('utf-8'),
-                pos.name.encode('utf-8'), pos.place.encode('utf-8'), pos.salary.encode('utf-8'))
+                pos.name.encode('utf-8'), pos.place.encode('utf-8'), pos.salary.encode('utf-8'),pos.cmp_id)
             cur.execute(add_position, data_position)
         elif types == 'company':
-            add_company = """insert into job_company(creator,extent,field,funding,name) values (%s,%s,%s,%s,%s)"""
+            add_company = """insert into job_company(id,creator,extent,field,funding,name,main_page) values (%s,%s,%s,%s,%s,%s,%s)"""
             data_company = (
-                pos.founder,
+                pos.id, pos.founder,
                 pos.extent.encode('utf-8'), pos.field.encode('utf-8'),
                 pos.funding.encode('utf-8'),
-                pos.name.encode('utf-8'))
+                pos.name.encode('utf-8'),pos.mainPage.encode('utf-8'))
             cur.execute(add_company, data_company)
         elif types == 'preach':
             add_preach = """insert into job_preach(click,origin_url,post_time,school_name,place,hold_time,title) values (%s,%s,%s,%s,%s,%s,%s)"""

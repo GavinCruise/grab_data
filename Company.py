@@ -3,7 +3,7 @@
 
 
 class Company:
-
+    id = None
     name = None
     founder = None
     funding = None
